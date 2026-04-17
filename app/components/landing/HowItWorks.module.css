@@ -1,0 +1,182 @@
+.section {
+  background: var(--clr-bg-2);
+  position: relative;
+  overflow: hidden;
+}
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--clr-border), transparent);
+}
+
+.header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+@media (max-width: 768px) {
+  .header { margin-bottom: 40px; }
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--clr-text-muted);
+  max-width: 480px;
+}
+
+/* Steps grid */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+  margin-bottom: 80px;
+  /* Prevent horizontal scroll from connectors */
+  overflow: hidden;
+}
+
+.step {
+  position: relative;
+  padding: 0 16px;
+}
+
+.connector {
+  position: absolute;
+  top: 56px;
+  left: 50%;
+  right: -50%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--clr-accent), var(--clr-border));
+  z-index: 0;
+}
+
+.stepCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+  padding: 32px 20px;
+  border-radius: var(--radius-lg);
+  transition: background 0.3s;
+}
+.stepCard:hover {
+  background: var(--clr-glass);
+}
+
+.numBadge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--clr-accent-2);
+  background: var(--clr-accent-glow);
+  border: 1px solid rgba(99,102,241,0.3);
+  border-radius: 999px;
+  padding: 4px 12px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.iconCircle {
+  width: 72px; height: 72px;
+  background: var(--clr-glass-light);
+  border: 1.5px solid var(--clr-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-top: 28px;
+  box-shadow: 0 0 30px rgba(99,102,241,0.06);
+  transition: all 0.3s;
+}
+.stepCard:hover .iconCircle {
+  border-color: var(--clr-accent);
+  box-shadow: var(--shadow-glow);
+  transform: scale(1.08);
+}
+
+.stepTitle {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.stepDesc {
+  font-size: 0.875rem;
+  color: var(--clr-text-muted);
+  line-height: 1.65;
+}
+
+/* CTA Banner */
+.ctaBanner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 48px 56px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(124,58,237,0.1));
+  border: 1px solid rgba(99,102,241,0.25);
+  overflow: hidden;
+}
+
+.ctaOrb {
+  position: absolute;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(99,102,241,0.2), transparent 70%);
+  right: -100px; top: -100px;
+  pointer-events: none;
+}
+
+.ctaContent { flex: 1; position: relative; z-index: 1; }
+
+.ctaTitle {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.ctaText {
+  font-size: 0.95rem;
+  color: var(--clr-text-muted);
+}
+
+.ctaActions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .connector { display: none; }
+}
+@media (max-width: 768px) {
+  .ctaBanner { flex-direction: column; text-align: center; padding: 40px 28px; }
+  .ctaActions { width: 100%; flex-direction: column; }
+  .ctaActions .btn { width: 100%; }
+}
+@media (max-width: 640px) {
+  .steps { grid-template-columns: 1fr; }
+}

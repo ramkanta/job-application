@@ -1,0 +1,43 @@
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  background: var(--clr-glass-light);
+  border: 1.5px solid var(--clr-border);
+  color: var(--clr-text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.toggle:hover {
+  color: var(--clr-text);
+  border-color: var(--clr-accent);
+  background: var(--clr-accent-glow);
+  transform: rotate(12deg) scale(1.05);
+}
+
+.toggle:active {
+  transform: rotate(0deg) scale(0.95);
+}
+
+.icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s var(--ease), transform 0.3s var(--ease);
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.hidden {
+  opacity: 0;
+  transform: scale(0.5) rotate(90deg);
+  pointer-events: none;
+}

@@ -1,0 +1,255 @@
+/* ============================================================
+   Shared auth page styles — login.tsx & signup.tsx
+   ============================================================ */
+
+/* ── Page Layout ─────────────────────────────── */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 16px 40px;
+  position: relative;
+  overflow: hidden;
+  background: var(--clr-bg-3);
+  transition: background 0.3s var(--ease);
+}
+
+/* ── Ambient orbs ────────────────────────────── */
+.bg { position: absolute; inset: 0; pointer-events: none; }
+.orb1 {
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(99,102,241,0.14), transparent 70%);
+  top: -200px; left: -200px;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+.orb2 {
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(124,58,237,0.1), transparent 70%);
+  bottom: -150px; right: -150px;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+/* ── Back link ───────────────────────────────── */
+.backLink {
+  position: absolute;
+  top: 24px; left: 24px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--clr-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color var(--transition);
+  z-index: 10;
+}
+
+@media (max-width: 480px) {
+  .backLink { top: 16px; left: 16px; font-size: 0.8rem; }
+}
+.backLink:hover { color: var(--clr-text); }
+
+/* ── Card ────────────────────────────────────── */
+.card {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 460px;
+  background: var(--clr-glass);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+  animation: fadeUp 0.5s var(--ease) both;
+  transition: background var(--transition), border-color var(--transition),
+              box-shadow var(--transition);
+}
+.cardWide { max-width: 560px; }
+
+/* ── Logo row ────────────────────────────────── */
+.logoRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+}
+.logoIcon {
+  width: 36px; height: 36px;
+  background: rgba(99,102,241,0.12);
+  border: 1px solid var(--clr-border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.logoText { font-size: 1.2rem; font-weight: 800; }
+
+/* ── Heading ─────────────────────────────────── */
+.heading { display: flex; flex-direction: column; gap: 6px; }
+.title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--clr-text);
+}
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--clr-text-muted);
+}
+
+/* ── Error banner ────────────────────────────── */
+.errorBanner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.25);
+  border-radius: var(--radius-md);
+  color: var(--clr-danger);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* ── Form ────────────────────────────────────── */
+.form { display: flex; flex-direction: column; gap: 16px; }
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.fullWidth { grid-column: 1 / -1; }
+
+/* ── Input with leading icon + optional eye btn ─ */
+.inputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 14px;
+  color: var(--clr-text-subtle);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Add left padding to make room for icon */
+.inputPadded { padding-left: 40px !important; }
+
+.inputError {
+  border-color: var(--clr-danger) !important;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.12) !important;
+}
+
+/* Show/hide password button */
+.eyeBtn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--clr-text-subtle);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color var(--transition);
+}
+.eyeBtn:hover { color: var(--clr-text-muted); }
+
+/* ── Label row (Password + Forgot) ───────────── */
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.forgotLink {
+  font-size: 0.8rem;
+  color: var(--clr-accent-2);
+  font-weight: 500;
+  transition: color var(--transition);
+}
+.forgotLink:hover { color: var(--clr-text); }
+
+/* ── Remember-me checkbox row ────────────────── */
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: var(--clr-text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+.checkbox {
+  width: 16px; height: 16px;
+  accent-color: var(--clr-accent);
+  cursor: pointer;
+}
+
+/* ── Submit button ───────────────────────────── */
+.submitBtn {
+  height: 50px;
+  font-size: 1rem;
+  margin-top: 4px;
+}
+
+/* ── Spinner ─────────────────────────────────── */
+.spinner {
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin-slow 0.7s linear infinite;
+  display: inline-block;
+}
+
+/* ── Footer / Auth switch ────────────────────── */
+.footerText {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--clr-text-muted);
+}
+.authLink {
+  color: var(--clr-accent-2);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.authLink:hover { color: var(--clr-accent); }
+
+/* ── Terms text ──────────────────────────────── */
+.terms {
+  font-size: 0.8rem;
+  color: var(--clr-text-subtle);
+  line-height: 1.6;
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 600px) {
+  .card { padding: 32px 20px; gap: 20px; }
+  .formGrid { grid-template-columns: 1fr; gap: 12px; }
+  .fullWidth { grid-column: 1; }
+  .page { padding: 64px 12px 32px; }
+  .title { font-size: 1.5rem; }
+  .subtitle { font-size: 0.85rem; }
+}
+
+@media (max-width: 380px) {
+  .card { padding: 24px 16px; }
+  .logoText { font-size: 1.1rem; }
+}
